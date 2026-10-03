@@ -1,0 +1,30 @@
+{
+  "name": "cryptolearner-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Express + MongoDB REST API and server rendering for cryptolearner.us",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch-path=config --watch-path=controllers --watch-path=middleware --watch-path=models --watch-path=routes --watch-path=services --watch-path=utils --watch-path=views --watch-path=app.js --watch-path=server.js --watch-path=.env server.js --dev",
+    "create-user": "node scripts/create-user.js",
+    "import:firestore": "node scripts/import-firestore.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.1.0",
+    "jsdom": "^26.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.10.4",
+    "morgan": "^1.10.0",
+    "multer": "^2.4.0"
+  }
+}

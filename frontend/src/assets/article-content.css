@@ -1,0 +1,516 @@
+/*
+ * WordPress-grade typography for rendered article/blog HTML.
+ *
+ * This is the ONE stylesheet that owns how published content looks —
+ * anywhere a post's `content` field is rendered with v-html (the public
+ * article page, the admin editor's live surface, the admin preview) applies
+ * the `.article-content` class and gets identical styling, so what an
+ * admin sees while writing matches what a reader sees after publishing.
+ *
+ * Plain CSS, not Tailwind @apply — this needs to keep working exactly the
+ * same regardless of how the rest of the app's build tooling changes.
+ */
+
+.article-content {
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+  line-height: 1.9;
+  color: #1e293b;
+  word-wrap: break-word;
+}
+
+/* ---------- Headings ---------- */
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4,
+.article-content h5,
+.article-content h6 {
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.article-content > * + h1,
+.article-content > * + h2,
+.article-content > * + h3 {
+  margin-top: 2.5em;
+}
+
+.article-content h1 {
+  font-size: 2.25em;
+  margin-bottom: 0.6em;
+}
+
+.article-content h2 {
+  font-size: 1.75em;
+  margin-bottom: 0.65em;
+}
+
+.article-content h3 {
+  font-size: 1.375em;
+  margin-bottom: 0.6em;
+}
+
+.article-content h4 {
+  font-size: 1.125em;
+  margin-bottom: 0.6em;
+}
+
+.article-content h5,
+.article-content h6 {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.6em;
+}
+
+/* ---------- Paragraphs & inline text ---------- */
+
+.article-content p {
+  margin: 1.25em 0;
+}
+
+.article-content strong,
+.article-content b {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.article-content em,
+.article-content i {
+  font-style: italic;
+}
+
+.article-content a {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+.article-content a:hover {
+  text-decoration: underline;
+}
+
+.article-content hr {
+  margin: 3em 0;
+  border: none;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Drop cap on the article's opening paragraph */
+.article-content > p:first-of-type::first-letter {
+  float: left;
+  margin-right: 0.75rem;
+  padding-top: 0.1em;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 3.75rem;
+  line-height: 0.85;
+  color: #2563eb;
+}
+
+/* ---------- Lists ---------- */
+
+.article-content ul,
+.article-content ol {
+  margin: 1.25em 0;
+  padding-left: 1.5em;
+}
+
+.article-content ul {
+  list-style: disc;
+}
+
+.article-content ol {
+  list-style: decimal;
+}
+
+.article-content li {
+  margin: 0.5em 0;
+  padding-left: 0.25em;
+}
+
+.article-content li > ul,
+.article-content li > ol {
+  margin: 0.5em 0;
+}
+
+/* ---------- Blockquote & pull quote ---------- */
+
+.article-content blockquote {
+  margin: 2em 0;
+  padding: 0.25em 0 0.25em 1.25em;
+  border-left: 3px solid #2563eb;
+  font-style: italic;
+  color: #374151;
+}
+
+.article-content blockquote p {
+  margin: 0.5em 0;
+}
+
+.article-content [data-pull-quote] {
+  border: none;
+  margin: 3rem 0;
+  padding: 2.25rem 1.5rem 1.75rem;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: #0f172a;
+  background: #f8fafc;
+  border-radius: 1.5rem;
+  position: relative;
+}
+
+.article-content [data-pull-quote]::before {
+  content: '\201C';
+  display: block;
+  font-size: 3.25rem;
+  line-height: 1;
+  color: #2563eb;
+  opacity: 0.5;
+  margin-bottom: 0.15rem;
+}
+
+/* ---------- Images, figures, video, iframe ---------- */
+
+.article-content img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  margin: 0.5em 0;
+  border-radius: 1rem;
+  box-shadow: 0 20px 44px -20px rgba(15, 23, 42, 0.28);
+}
+
+/* Images inside a figure/gallery already sit in a styled wrapper. */
+.article-content figure img,
+.article-content .content-gallery img {
+  margin: 0;
+}
+
+.article-content video {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  background: #0f172a;
+}
+
+.article-content figure {
+  margin: 2rem 0;
+}
+
+.article-content figcaption {
+  margin-top: 0.75rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: #94a3b8;
+}
+
+.article-content iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: none;
+  border-radius: 1.25rem;
+  box-shadow: 0 24px 48px -20px rgba(15, 23, 42, 0.25);
+  margin: 2rem 0;
+}
+
+/* ---------- Tables ---------- */
+
+.article-content .table-scroll {
+  overflow-x: auto;
+  margin: 2em 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375em;
+}
+
+.article-content thead {
+  background: #f8fafc;
+}
+
+.article-content th {
+  text-align: left;
+  font-weight: 600;
+  color: #0f172a;
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+.article-content td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid #f1f5f9;
+  color: #374151;
+}
+
+.article-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.article-content tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+/* ---------- Code ---------- */
+
+.article-content code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875em;
+  background: #f1f5f9;
+  color: #be185d;
+  padding: 0.15em 0.4em;
+  border-radius: 0.375rem;
+}
+
+.article-content pre {
+  margin: 2em 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 1.25rem;
+  background: #282c34;
+  color: #abb2bf;
+  overflow-x: auto;
+  box-shadow: 0 24px 48px -20px rgba(15, 23, 42, 0.45);
+}
+
+.article-content pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+/* ---------- Alerts / callouts ----------
+ * Two equivalent authoring styles render identically: the Tiptap editor's
+ * own [data-callout][data-variant] node, and plain WordPress-style
+ * <div class="info|warning|success|error"> markup (e.g. hand-written or
+ * pasted content) — both resolve to the same flat, no-gradient card. */
+
+.article-content [data-callout],
+.article-content .info,
+.article-content .warning,
+.article-content .success,
+.article-content .error {
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid;
+  padding: 1.25rem 1.5rem 1.25rem 2rem;
+  margin: 2rem 0;
+}
+
+.article-content [data-callout]::before,
+.article-content .info::before,
+.article-content .warning::before,
+.article-content .success::before,
+.article-content .error::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  bottom: 0.65rem;
+  width: 4px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.article-content [data-callout] p:last-child,
+.article-content .info p:last-child,
+.article-content .warning p:last-child,
+.article-content .success p:last-child,
+.article-content .error p:last-child {
+  margin-bottom: 0;
+}
+
+.article-content [data-callout][data-variant='info'],
+.article-content .info {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e40af;
+}
+
+.article-content [data-callout][data-variant='warning'],
+.article-content .warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.article-content [data-callout][data-variant='success'],
+.article-content .success {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.article-content [data-callout][data-variant='error'],
+.article-content .error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+/* ---------- Pros / cons ---------- */
+
+.article-content .content-pros-cons {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2em 0;
+}
+
+@media (min-width: 640px) {
+  .article-content .content-pros-cons {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.article-content .content-pros-cons__col {
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid;
+}
+
+.article-content .content-pros-cons__pros {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+}
+
+.article-content .content-pros-cons__cons {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
+.article-content .content-pros-cons__title {
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem !important;
+}
+
+.article-content .content-pros-cons__pros .content-pros-cons__title {
+  color: #0e7490;
+}
+
+.article-content .content-pros-cons__cons .content-pros-cons__title {
+  color: #b91c1c;
+}
+
+.article-content .content-pros-cons p {
+  margin: 0.35rem 0 !important;
+  font-size: 0.925em;
+}
+
+/* ---------- Gallery ---------- */
+
+.article-content .content-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.85rem;
+  margin: 2em 0;
+}
+
+.article-content .content-gallery img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  object-fit: cover;
+  margin: 0;
+  border-radius: 1rem;
+}
+
+/* ---------- Direct video / generic embed / CTA button / chart placeholder ---------- */
+
+.article-content .content-video {
+  width: 100%;
+  border-radius: 1rem;
+  margin: 2em 0;
+}
+
+.article-content .content-embed {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  margin: 2em 0;
+}
+
+.article-content .content-twitter {
+  display: block;
+  border-radius: 1rem;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  padding: 1rem 1.25rem;
+  margin: 2em 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1d4ed8;
+  text-decoration: none !important;
+  word-break: break-all;
+}
+
+.article-content .content-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #2563eb;
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  padding: 0.75rem 1.75rem;
+  margin: 2em 0;
+  text-decoration: none !important;
+}
+
+.article-content .content-cta-button:hover {
+  background: #1d4ed8;
+}
+
+.article-content .content-chart {
+  margin: 2em 0;
+  padding: 1.75rem 1.75rem 1.25rem;
+  border-radius: 1.25rem;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.article-content .content-chart__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+  height: 140px;
+}
+
+.article-content .content-chart__bars span {
+  flex: 1;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background: #2563eb;
+  opacity: 0.85;
+}
+
+.article-content .content-chart__caption {
+  margin: 0.75rem 0 0 !important;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-align: center;
+  font-style: italic;
+}
